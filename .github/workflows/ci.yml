@@ -26,3 +26,8 @@ jobs:
         run: |
           cd frontend
           npm run build
+
+      # 🔥 NEW STEP
+      - name: Build Docker image
+        run: |
+          docker build -t frontend ./frontend
