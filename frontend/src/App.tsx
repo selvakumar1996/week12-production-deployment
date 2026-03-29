@@ -1,24 +1,19 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { lazy, Suspense } from "react";
-import DashboardLayout from "./components/templates/DashboardLayout";
-
-const Dashboard = lazy(() => import("./pages/Dashboard"));
-const Analytics = lazy(() => import("./pages/Analytics"));
-const Settings = lazy(() => import("./pages/Settings"));
+import { useEffect, useState } from "react";
 
 function App() {
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/message")
+      .then((res) => res.json())
+      .then((data) => setMessage(data.message));
+  }, []);
+
   return (
-    <BrowserRouter>
-      <DashboardLayout>
-        <Suspense fallback={<h2>Loading...</h2>}>
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/analytics" element={<Analytics />} />
-            <Route path="/settings" element={<Settings />} />
-          </Routes>
-        </Suspense>
-      </DashboardLayout>
-    </BrowserRouter>
+    <div>
+      <h1>Enterprise Dashboard</h1>
+      <h2>{message}</h2>
+    </div>
   );
 }
 
