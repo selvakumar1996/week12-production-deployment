@@ -1,0 +1,1 @@
+import{j as e}from"./index-B-mewUCL.js";const i=()=>e.jsxs("div",{children:[e.jsx("h2",{children:"Settings Page"}),e.jsx("p",{children:"Application settings will be configured here."})]});export{i as default};
